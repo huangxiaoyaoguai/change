@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"webpack --config ./conf/webpack.dev.config.js --progress --watch",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --config ./conf/webpack.conf.js --progress --watch",
-    "clean": "rimraf ./dist/client/* && rimraf ./dist/server/*"
+    "clean": "rimraf ./dist/client/* && rimraf ./dist/server/* && rimraf ./public/*"
   },
   "repository": {
     "type": "git",

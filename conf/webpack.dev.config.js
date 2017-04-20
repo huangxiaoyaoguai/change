@@ -1,97 +1,79 @@
-var path = require('path')
-var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var notifier = require('node-notifier')
+const path = require('path'),
+    fs = require('fs'),
+    webpack = require('webpack'),
+    autoprefixer = require('autoprefixer'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin')
+let clientConfig, serverConfig
 
-var WebpackOnBuildPlugin = require('on-build-webpack')
 
-
-var devEntryBundle = [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:5000',
-    './src/main.js'
-]
-
-var pushNotification = function(title, message, sound) {
-    sound = sound || false;
-
-    notifier.notify({
-        title: title,
-        message: message,
-        sound: sound,
-        icon: path.join(__dirname, './icon.png')
-    }, function(err, respond) {
-        if(err) {
-            console.error(err);
-        }
-    });
-}
-
-module.exports = {
-
-    devtool: '#source-map',
-
+clientConfig = {
+    context: path.resolve(__dirname, '..'),
     entry: {
-        bundle: devEntryBundle,
-        vendor: ['react', 'react-dom','underscore']
-    },
-
-    output: {
-        filename: '[name].js',
-        chunkFilename: '[name].js',
-        path: path.resolve('./dist/'),
-        publicPath: '/'
-    },
-
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
-                query: {
-                    presets: ['react', 'es2015']
-                }
-            },
-            {
-                test:   /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            },
-             {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract('style', 'css!less')
-            },
-            { 
-                test: /\.(jpg|png)$/, 
-                loader: "file-loader?name=[path][name].[ext]"
-            }
-
+        bundle: './client',
+        vendor: [
+            'react',
+            'react-dom',
+            'superagent'
         ]
     },
-    //  babel: {
-    //   "plugins": [["antd", {style: "css"}]]
-    // },
-
+    output: {
+        path: path.resolve(__dirname, '../dist/client'),
+        filename: '[name].js',
+        chunkFilename: 'chunk.[name].js',
+        publicPath: '/'
+    },
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+            query: {
+                presets: ['es2015', 'react', 'stage-0'],
+                plugins: ['transform-runtime', 'add-module-exports'],
+                cacheDirectory: true
+            }
+        }, {
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract('style', 'css!less')
+        }, {
+            test: /\.(jpg|png|gif|webp)$/,
+            loader: 'url?limit=8000'
+        }, {
+            test: /\.json$/,
+            loader: 'json'
+        }, {
+            test: /\.html$/,
+            loader: 'html?minimize=false'
+        }]
+    },
+    resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin("[name].css"),
-        new WebpackOnBuildPlugin(function(stats) {
-            var compilation = stats.compilation;
-            var errors = compilation.errors;
-            if (errors.length > 0) {
-                var error = errors[0];
-                pushNotification(error.name, error.message, 'Glass');
-            }
-            else {
-                var message = 'takes ' + (stats.endTime - stats.startTime) + 'ms';
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest'],
+            filename: '[name].js'
+        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {warnings: false},
+        //     comments: false
+        // }),
+        // new webpack.DefinePlugin({'NODE_ENV': JSON.stringify('production')}),
 
-                var warningNumber = compilation.warnings.length;
-                if (warningNumber > 0) {
-                    message += ', with ' + warningNumber + ' warning(s)';
-                }
-
-                pushNotification('自定义页面', message);
-            }
-        })
+        new webpack.DefinePlugin({
+              'process.env':{
+                'NODE_ENV': JSON.stringify('production')
+              }
+            }),
+        new HtmlWebpackPlugin({
+            filename: '../../public/index.html',
+            template: './tpl/index.html',
+            chunksSortMode: 'none'
+        }),
+        new ExtractTextPlugin('[name].css', {allChunks: true})
     ]
 }
+
+
+module.exports = [clientConfig]

@@ -43,8 +43,8 @@ clientConfig = {
                 cacheDirectory: true
             }
         }, {
-            test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]!sass')
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract('style', 'css!less')
         }, {
             test: /\.(jpg|png|gif|webp)$/,
             loader: 'url?limit=8000'
@@ -56,7 +56,7 @@ clientConfig = {
             loader: 'html?minimize=false'
         }]
     },
-    resolve: {extensions: ['', '.js', '.json', '.scss']},
+    resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
@@ -75,12 +75,6 @@ clientConfig = {
                 'NODE_ENV': JSON.stringify('production')
               }
             }),
-       
-        // new HtmlWebpackPlugin({
-        //     filename: '../../views/prod/index.html',
-        //     template: './views/tpl/index.tpl.html',
-        //     chunksSortMode: 'none'
-        // }),
         new HtmlWebpackPlugin({
             filename: '../../public/index.html',
             template: './tpl/index.html',
@@ -128,14 +122,14 @@ serverConfig = {
         }]
     },
     externals: getExternals(),
-    resolve: {extensions: ['', '.js', '.json', '.scss']},
+    resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {warnings: false},
-            comments: false
-        }),
+        // new webpack.optimize.DedupePlugin(),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {warnings: false},
+        //     comments: false
+        // }),
         //  new HtmlWebpackPlugin({
         //     filename: './public/index.html',
         //     template: './tpl/index.html',

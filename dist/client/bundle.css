@@ -1,0 +1,143 @@
+.main .banner {
+  width: 100%;
+  padding-top: 30%;
+  background-image: url(http://huchsite.oss-cn-shanghai.aliyuncs.com/woman-in-field_4460x4460.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.main .banner .banner_text {
+  position: absolute;
+  width: 40%;
+  height: 0.8rem;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.1rem;
+  margin-left: -20%;
+  text-align: center;
+  opacity: 0.8;
+}
+.main .banner .banner_text .b_text_top {
+  font-size: 0.8rem;
+  color: #9a9595;
+  font-weight: bolder;
+}
+.main .banner .banner_text .b_text_bottom {
+  color: #8c8b8a;
+  font-size: 0.2rem;
+}
+.main .content {
+  width: 80%;
+  margin: auto;
+  padding-top: 0.5rem;
+}
+.main .content .contentList {
+  width: 70%;
+}
+.main .content .contentList .content_item {
+  width: 100%;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+}
+.main .content .contentList .content_item .item_title {
+  height: 0.4rem;
+  line-height: 0.3rem;
+  font-size: 0.21rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.main .content .contentList .content_item .item_tag {
+  height: 0.3rem;
+  line-height: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+.main .content .contentList .content_item .item_tag span {
+  display: inline-block;
+  min-width: 0.46rem;
+  height: 0.24rem;
+  line-height: 0.24rem;
+  font-size: 0.12rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  margin-right: 0.1rem;
+  background: #fd92a4;
+  color: #fff;
+  cursor: pointer;
+}
+.main .content .contentList .content_item .item_introduction {
+  font-size: 0.13rem;
+  font-style: italic;
+  color: #a3a3a3;
+  margin-bottom: 0.1rem;
+}
+.main .content .contentList .content_item .item_time {
+  margin-bottom: 0.2rem;
+  font-family: Lora, 'Times New Roman', serif;
+  color: gray;
+  font-size: 0.16rem;
+  font-style: italic;
+  margin-top: 0;
+}
+.main .content .aboutinfo {
+  width: 25%;
+  padding: 0 2.5%;
+  color: #bfbfbf;
+  font-size: 0.14rem;
+}
+.main .content .aboutinfo .aboutinfo_tag {
+  border-bottom: 1px solid #eee;
+}
+.main .content .aboutinfo .aboutinfo_tag .tag_title {
+  color: gray!important;
+  font-size: 0.14rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+.main .content .aboutinfo .aboutinfo_tag .tag_content {
+  margin-bottom: 0.3rem;
+}
+.main .content .aboutinfo .aboutinfo_tag .tag_content span {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 0.2rem;
+  padding: 0 0.1rem;
+  line-height: 0.24rem;
+  font-size: 0.12rem;
+  text-decoration: none;
+  margin: 3px 3px;
+  margin-bottom: 6px;
+  border-color: #bfbfbf;
+  color: #bfbfbf;
+}
+.main .content .aboutinfo .aboutinfo_tag .tag_content span:hover {
+  color: #337ab7;
+  border-color: #337ab7;
+}
+.main .content .aboutinfo_me .me_title {
+  color: gray!important;
+  font-size: 0.14rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+.main .content .aboutinfo_me .me_pic img {
+  width: 80%;
+  border-radius: 5px;
+}
+.main .content .aboutinfo_me .me_talk {
+  margin: 0.15rem 0;
+}
+.main .content .aboutinfo_me .me_talk div {
+  margin-bottom: 10px;
+}
+.main .content .aboutinfo_me .me_mail {
+  text-align: center;
+}
+.main .content .aboutinfo_me .me_mail .mail_icon {
+  font-size: 0.22rem;
+  margin-right: 10px;
+  color: #bfbfbf;
+}
+.main .content .aboutinfo_me .me_mail .mail_icon:hover {
+  color: #337ab7;
+}
