@@ -141,3 +141,112 @@
 .main .content .aboutinfo_me .me_mail .mail_icon:hover {
   color: #337ab7;
 }
+.add_detail {
+  width: 80%;
+  margin: auto;
+  padding-top: 30px;
+}
+.add_detail .add_title {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.add_detail .add_title span {
+  font-size: 16px;
+  margin-right: 10px;
+}
+.add_detail .add_title input {
+  height: 30px;
+  width: 60%;
+}
+.add_detail .add_tag {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.add_detail .add_tag span {
+  font-size: 16px;
+  margin-right: 10px;
+}
+.add_detail .add_tag input {
+  height: 30px;
+  width: 60%;
+}
+.add_detail .add_desc {
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.add_detail .add_desc span {
+  font-size: 16px;
+  margin-right: 10px;
+}
+.add_detail .add_desc textarea {
+  height: 80px;
+  width: 60%;
+  vertical-align: text-top;
+}
+.add_detail .upHtml {
+  cursor: pointer;
+  width: 60px;
+  height: 40px;
+  background-color: #80ca68;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
+}
+.detail .detail_pic {
+  width: 100%;
+  padding-top: 30%;
+  background-image: url(http://huchsite.oss-cn-shanghai.aliyuncs.com/woman-in-field_4460x4460.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.detail .de_source {
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-style: italic;
+  color: gray;
+  margin-bottom: 10px;
+}
+.detail .de_source a {
+  color: #337ab7;
+}
+.detail .detail_content {
+  width: 80%;
+  margin: auto;
+}
+.detail .detail_content .de_c_title {
+  margin: 20px 0 10px;
+  font-size: 30px;
+  font-weight: 800;
+}
+.detail .detail_content .de_c_tag {
+  height: 0.3rem;
+  line-height: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+.detail .detail_content .de_c_tag span {
+  display: inline-block;
+  min-width: 0.46rem;
+  height: 0.24rem;
+  line-height: 0.24rem;
+  font-size: 0.12rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  margin-right: 0.1rem;
+  background: #fd92a4;
+  color: #fff;
+  cursor: pointer;
+}
+.detail .detail_content .de_c_time {
+  margin-bottom: 0.2rem;
+  font-family: Lora, 'Times New Roman', serif;
+  color: gray;
+  font-size: 0.16rem;
+  font-style: italic;
+  margin-top: 0;
+}

@@ -15,14 +15,24 @@ const routes = {
                 }, 'home')
             }
         },
-        childRoutes: [{
+        childRoutes: [
+        {
             path: 'add',
             getComponent(nextState, callback) {
                 require.ensure([], require => {
                     callback(null, require('./add/view'))
                 }, 'add')
             }
-        }]
+        },
+        {
+            path: 'detail/*',
+            getComponent(nextState, callback) {
+                require.ensure([], require => {
+                    callback(null, require('./detail/view'))
+                }, 'detail')
+            }
+        }
+        ]
     }]
 }
 

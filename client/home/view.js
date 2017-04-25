@@ -6,9 +6,28 @@ import './index.less';
 
 
 class HomeView extends Component {
+    constructor(props){
+        super(props)
+        console.log(props)
+        this.state={
+            list:[],
+        }
+    }
 	componentDidMount(){
 		console.log(1231)
+        this.getData();
 	}
+    getData(){
+        var that = this;
+        huch.get("/api/getlist",{},
+            function(res){
+                console.log(res)
+                that.setState({
+                    list:res.data
+                })
+
+            })
+    }
     render() {
         return (
             <div className="main">
@@ -21,30 +40,29 @@ class HomeView extends Component {
                 <div className="content clearfix animated fadeIn">
                     <div className="contentList fl">
 
-                        <div className="content_item hvr-underline-from-center">
-                            <div className="item_title">网站第一篇文章</div>
-                            <div className="item_tag">
-                                <span className="hvr-float-shadow">js</span>
-                                <span className="hvr-float-shadow">html</span>
-                                <span className="hvr-float-shadow">node</span>
-                            </div>
-                            <div className="item_introduction">骄傲山东矿机按时打卡好伐啦看似简单埃里克森就打了看似简单阿斯利康解放路卡接收到垃圾，索拉卡涉及到快乐货收到了阿法拉科技给谁看好看哈萨克斯安静伐开森发哈伦裤圣诞节啊</div>
-                            <div className="item_time">createBy 2017-04-15</div>
-                        </div>
+                        {
+                            this.state.list.map(function(ele,i){
+                                console.log(ele.id)
+                                return <Link to={'/detail/'+ele.id}>
+                                    <div className="content_item hvr-underline-from-center animated fadeIn">
+                                            <div className="item_title">{ele.title}</div>
+                                            <div className="item_tag">
+                                                {
+                                                    ele.tags.length&&ele.tags.map(function(item,n){
+                                                        return <span className="hvr-float-shadow">{item}</span>
+                                                    })
+                                                }
+                                            </div>
+                                            <div className="item_introduction">{ele.desc}</div>
+                                            <div className="item_time">createBy {ele.creat_time}</div>
+                                        </div>
+                                        </Link>
+                            })
+                        }
 
-                        <div className="content_item hvr-underline-from-center">
-                            <div className="item_title">网站第一篇文章</div>
-                            <div className="item_tag">
-                                <span className="hvr-float-shadow">js</span>
-                                <span className="hvr-float-shadow">html</span>
-                                <span className="hvr-float-shadow">node</span>
-                            </div>
-                            <div className="item_introduction">骄傲山东矿机按时打卡好伐啦看似简单埃里克森就打了看似简单阿斯利康解放路卡接收到垃圾，索拉卡涉及到快乐货收到了阿法拉科技给谁看好看哈萨克斯安静伐开森发哈伦裤圣诞节啊</div>
-                            <div className="item_time">createBy 2017-04-15</div>
-                        </div>
 
                     </div>
-                    <div className="aboutinfo fl">
+                    {this.state.list.length?<div className="aboutinfo fl">
                         <div className="aboutinfo_tag">
                             <div className="tag_title">TAGS</div>
                             <div className="tag_content">
@@ -73,7 +91,7 @@ class HomeView extends Component {
 
                             </div>
                         </div>
-                    </div>
+                    </div>:null}
                 </div>
 				<div><Link to='/add'>add</Link></div>
 			</div>

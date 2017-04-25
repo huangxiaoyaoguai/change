@@ -1,5 +1,5 @@
-var h = {};  
-    h.get = function (url, data, ok, error) {  
+window.huch = {};  
+    huch.get = function (url, data, ok, error) {  
         $.ajax({  
             url: url,  
             data: data,  
@@ -8,7 +8,7 @@ var h = {};
             error: error  
         });  
     }  
-    h.post = function (url, data, ok, error) {  
+    huch.post = function (url, data, ok, error) {  
         $.ajax({  
             url: url,  
             data: data,  
@@ -19,7 +19,7 @@ var h = {};
         });  
     }  
     //获取url参数  
-    h.url = function (url) {  
+    huch.url = function (url) {  
         if (!url) {  
             url = location.search.substring(1);  
         } else {  
@@ -38,7 +38,33 @@ var h = {};
             args[argname] = decodeURI(value);  
         }  
         return args;  
-    }  
+    }
+    huch.loadurl = {};
+    huch.loadScript = function(url,callback){
+        if(huch.loadurl[url]){
+            callback && callback();
+            return;
+        }
+        huch.loadurl[url] =url; 
+        var scriptEle = document.createElement("script");
+        scriptEle.async = true;
+        scriptEle.src = url;
+        scriptEle.charset = 'utf-8';
+        (document.head || document.documentElement).appendChild(scriptEle);
+        scriptEle.onload = scriptEle.onreadystatechange = function(){
+        if('undefined' === typeof scriptEle.readyState || 'loaded' === scriptEle.readyState || 'complete' === scriptEle.readyState){
+            try{
+                setTimeout(function(){
+                    callback && callback();
+                }, 5);
+            }finally{
+                scriptEle.onload = scriptEle.onreadystatechange = null;
+                scriptEle = null;
+            }
+        }
+    }
+
+    } 
       
     // 返回字符串的实际长度, 一个汉字算2个长度   
     String.prototype.strlen = function () {  

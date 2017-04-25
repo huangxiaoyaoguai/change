@@ -1,4 +1,4 @@
-webpackJsonp([2,3],[
+webpackJsonp([1,3],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -1652,13 +1652,13 @@ webpackJsonp([2,3],[
 /* 206 */,
 /* 207 */,
 /* 208 */,
-/* 209 */
+/* 209 */,
+/* 210 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 210 */,
 /* 211 */,
 /* 212 */,
 /* 213 */,
@@ -1773,7 +1773,8 @@ webpackJsonp([2,3],[
 /* 322 */,
 /* 323 */,
 /* 324 */,
-/* 325 */
+/* 325 */,
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1804,7 +1805,7 @@ webpackJsonp([2,3],[
 
 	var _reactRouter = __webpack_require__(126);
 
-	__webpack_require__(209);
+	__webpack_require__(210);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1817,102 +1818,66 @@ webpackJsonp([2,3],[
 	        var _this = (0, _possibleConstructorReturn3.default)(this, (HomeView.__proto__ || (0, _getPrototypeOf2.default)(HomeView)).call(this, props));
 
 	        _this.state = {
-	            tagvalue: "",
-	            title: "",
-	            desc: ""
+	            data: {}
 	        };
 
 	        return _this;
 	    }
 
 	    (0, _createClass3.default)(HomeView, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
+	        key: 'getData',
+	        value: function getData() {
+	            var param = this.props.params.splat;
+	            var that = this;
+	            console.log(param);
+	            huch.get("/api/getDetail", { id: param }, function (res) {
+	                console.log(res);
+	                if (res.code == 0) {
+	                    that.setState({
+	                        data: res.data
+	                    });
+	                }
+	            });
+	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            huch.loadScript('/common/editor/wangEditor.js', function () {
-	                var editor = new wangEditor('editor');
-	                editor.config.uploadImgUrl = '/upimage';
-	                editor.create();
-	            });
-	        }
-	    }, {
-	        key: 'updata',
-	        value: function updata(e) {
-	            var html = $('#editor').html();
-	            console.log(html);
-	            var state = this.state;
-	            console.log(state);
-	            var data = {
-	                title: state.title,
-	                tag: state.tagvalue,
-	                desc: state.desc,
-	                text: html
-	            };
-	            console.log(data);
-	            huch.post("/api/add", {
-	                title: state.title,
-	                tag: state.tagvalue,
-	                desc: state.desc,
-	                text: html,
-	                time: new Date().getTime()
-	            }, function (res) {
-	                console.log(res);
-	            });
-	        }
-	    }, {
-	        key: 'inputChange',
-	        value: function inputChange(type, e) {
-	            console.log(1231, type);
-	            var val = e.target.value;
-	            console.log(val);
-	            var state = this.state;
-	            console.log(state);
-	            state[type] = val;
-	            this.setState({});
+	            this.getData();
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var data = this.state.data;
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'add_detail' },
+	                { className: 'detail' },
+	                _react2.default.createElement('div', { className: 'detail_pic' }),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'add_title' },
+	                    { className: 'detail_content' },
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'tit_name' },
-	                        '\u6807\u9898:'
+	                        'div',
+	                        { className: 'de_c_title' },
+	                        data.title
 	                    ),
-	                    _react2.default.createElement('input', { defaultValue: this.state.tagvalue, onChange: this.inputChange.bind(this, 'title') })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'add_tag' },
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'tag_name' },
-	                        '\u6807\u7B7E:'
+	                        'div',
+	                        { className: 'de_c_tag' },
+	                        data.tags && data.tags.map(function (ele, i) {
+	                            return _react2.default.createElement(
+	                                'span',
+	                                { className: 'hvr-float-shadow' },
+	                                ele
+	                            );
+	                        })
 	                    ),
-	                    _react2.default.createElement('input', { defaultValue: this.state.tagvalue, onChange: this.inputChange.bind(this, 'tagvalue') })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'add_desc' },
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'desc_name' },
-	                        '\u7B80\u4ECB:'
+	                        'div',
+	                        { className: 'de_c_time' },
+	                        'createBy ',
+	                        data.creat_time
 	                    ),
-	                    _react2.default.createElement('textarea', { defaultValue: this.state.tagvalue, onChange: this.inputChange.bind(this, 'desc') })
-	                ),
-	                _react2.default.createElement('div', { id: 'editor', style: { "min-height": "500px" } }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'upHtml', onClick: this.updata.bind(this) },
-	                    '\u63D0\u4EA4'
+	                    _react2.default.createElement('div', { className: 'de_c_main', dangerouslySetInnerHTML: { __html: data.data } })
 	                )
 	            );
 	        }
