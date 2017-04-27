@@ -1,8 +1,10 @@
+
+
 .main{
 	.banner{
 		width:100%;
 		// height:400px;
-		padding-top: 30%;
+		padding-top: 6rem;
 		background-image: url(//huchsite.oss-cn-shanghai.aliyuncs.com/woman-in-field_4460x4460.jpg);
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -158,4 +160,39 @@
 
 		}
 	}
+}
+
+@media screen and (max-width: 750px) {
+	.main{
+		.content{
+			.contentList{
+				width:100%;
+			}
+			.aboutinfo{
+				width:100%;
+				padding-top: 20px;
+				border-top:1px solid #eee;
+				.aboutinfo_me{
+					.me_pic{
+							display: inline;
+
+						img{
+							width:50%;
+						}
+					}
+					.me_talk{
+						display: inline-block;
+					    margin-left: 20px;
+					    vertical-align: top;
+					}
+					.me_mail{
+						margin-top: 20px;
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
+
+	}
+
 }
