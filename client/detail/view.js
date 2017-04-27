@@ -35,7 +35,7 @@ class HomeView extends Component {
         var data = this.state.data;
         return (
             <div className="detail">
-                <div className="detail_pic"></div>
+                <div className="detail_pic" style={{"backgroundImage":"url("+data.imgpath+")"}}></div>
 
                 <div className="detail_content">
                 {
