@@ -33,7 +33,6 @@ class HomeView extends Component {
 	}
     updata(e){
         var html = $('#editor').html();
-        console.log(html)
         var state = this.state;
          huch.post("/api/add",
             {
@@ -54,18 +53,13 @@ class HomeView extends Component {
 
     }
     inputChange(type,e){
-        console.log(1231,type)
         var val = e.target.value;
-        console.log(val)
         var state = this.state;
-        console.log(state)
         state[type] = val
         this.setState({})
 
     }
     upimg(e){
-        console.log(e.target.files)
-
         var that = this;
         var files = e.target.files;
         if(!files.length){
@@ -90,7 +84,6 @@ class HomeView extends Component {
         xhr.onload = function () {
 　　　　　　if (xhr.status === 200) {
 　　　　　　　　console.log('上传成功');
-                console.log(xhr.response);
                 that.setState({
                     imgpath:xhr.response,
                     isimgpath:1

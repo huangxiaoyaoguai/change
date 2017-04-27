@@ -16,11 +16,9 @@ class HomeView extends Component {
     getData(){
         var param = this.props.params.splat;
         var that = this;
-        console.log(param)
         huch.get("/api/getDetail",
             {id:param},
             function(res){
-                console.log(res)
                 if(res.code==0){
                     that.setState({
                         data:res.data

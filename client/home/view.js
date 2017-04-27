@@ -8,20 +8,17 @@ import './index.less';
 class HomeView extends Component {
     constructor(props){
         super(props)
-        console.log(props)
         this.state={
             list:[],
         }
     }
 	componentDidMount(){
-		console.log(1231)
         this.getData();
 	}
     getData(){
         var that = this;
         huch.get("/api/getlist",{},
             function(res){
-                console.log(res)
                 that.setState({
                     list:res.data
                 })
@@ -42,7 +39,6 @@ class HomeView extends Component {
 
                         {
                             this.state.list.map(function(ele,i){
-                                console.log(ele.id)
                                 return <Link to={'/detail/'+ele.id}>
                                     <div className="content_item hvr-underline-from-center animated fadeIn">
                                             <div className="item_title">{ele.title}</div>
@@ -93,7 +89,6 @@ class HomeView extends Component {
                         </div>
                     </div>:null}
                 </div>
-				<div><Link to='/add'>add</Link></div>
 			</div>
 
         )
