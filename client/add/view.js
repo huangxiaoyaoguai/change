@@ -45,7 +45,11 @@ class HomeView extends Component {
                 time:new Date().getTime()
             },
             function(res){
-                console.log(res)
+                if(res.code==0){
+                    window.location.href='/'
+                }else{
+                    alert('数据库保存失败')
+                }
             })
 
     }
