@@ -34,6 +34,10 @@ class HomeView extends Component {
     updata(e){
         var html = $('#editor').html();
         var state = this.state;
+        if(state.imgpath==""){
+            alert('请上传封面图片')
+            return
+        }
          huch.post("/api/add",
             {
                 title:state.title,
