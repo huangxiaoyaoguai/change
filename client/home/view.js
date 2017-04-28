@@ -86,6 +86,10 @@ class HomeView extends Component {
                                 <a href="mailto:921365631@qq.com" target="_blank" className="hvr-grow-shadow iconfont mail_icon icon-svg17"></a>
 
                             </div>
+                            <div className="weixinscancode">
+                                <div className="imgcode"></div>
+                                <div className="text">微信扫一扫，打开小程序</div>
+                            </div>
                         </div>
                     </div>:null}
                 </div>
