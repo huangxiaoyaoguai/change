@@ -7,7 +7,7 @@ if (typeof require.ensure !== 'function') {
 const routes = {
     childRoutes: [{
         path: '/',
-        // component: require('./home/view'),
+        component: require('./common/main'),
         indexRoute: {
             getComponent(nextState, callback) {
                 require.ensure([], require => {
@@ -38,26 +38,3 @@ const routes = {
 
 export default routes
 
-// import React from 'react'
-// import { Route, IndexRoute, Redirect } from 'react-router'
-
-// import HomeView from '../client/home/view'
-
-// import Pageindex from '../client/add/view'
-
-
-
-// module.exports = (
-//     <Route path='/' component={HomeView} >
-//         <IndexRoute component={Pageindex} />
-//         <Route path='home' component={HomeView}></Route>
-//         <Route path='add' component={Pageindex}></Route>
-
-
-
-
-
-
-
-//     </Route>
-// )

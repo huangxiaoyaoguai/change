@@ -9,3 +9,5 @@ bower_components
 .DS_Store
 log
 npm-debug.log
+
+lib/aliupimg.js
