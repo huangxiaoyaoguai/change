@@ -1,1 +1,420 @@
-!function(e){function t(o){if(n[o])return n[o].exports;var i=n[o]={exports:{},id:o,loaded:!1};return e[o].call(i.exports,i,i.exports,t),i.loaded=!0,i.exports}var n={};return t.m=e,t.c=n,t.p="",t(0)}([function(e,t,n){(function(e){"use strict";function t(e){var t=new Date(+e),n=t.getFullYear()+"."+(t.getMonth()+1)+"."+t.getDate()+".  "+(t.getHours()+1)+":"+(t.getMinutes()+1);return n}var o=n(8),i=o(),s=n(6),r=n(10),a=(n(9),n(7)),c=n(2),u=(n(1),n(12)),d=n(3),l=n(5);i.use(l.urlencoded({extended:!1})),i.set("view engine","ejs"),i.set("views","./public"),i.use(a()),i.use("/dist",o.static("./dist/src")),i.use("/common",o.static("./common")),i.use("/common",o.static("common")),i.use("/client",o.static("./dist/client")),i.use("/",o.static("./dist/client")),i.get("/",function(t,n){n.sendFile(u.resolve(e,"../public/index.html"))}),i.get("/add",function(t,n){n.sendFile(u.resolve(e,"../public/index.html"))}),i.get("/detail/*",function(t,n){n.sendFile(u.resolve(e,"../public/index.html"))}),i.get("/api/getlist",function(e,n){var o={};o.id=0,d(o,"find",function(e){var o={};if(e.length){o.code=0;var i=[];e.map(function(e,n){var o={};o.tags=e.tag.split(","),o.title=e.title,o.desc=e.desc,o.id=e.id,o.creat_time=t(e.creat_time),i.push(o)}),o.data=i.reverse()}else o.code=-1,o.msg="无此结果",o.data=e;n.send(o),n.end()})}),i.get("/api/getDetail",function(e,n){d(e.query,"find",function(e){var o={};e.length?(o.code=0,o.data=e[0],o.data.tags=o.data.tag.split(","),o.data.creat_time=t(o.data.creat_time)):(o.code=-1,o.msg="无此结果",o.data=e[0]),n.send(o),n.end()})}),i.post("/api/add",function(e,t){d(e.body,"add",function(e){var n={};n.code=0,t.send(n),t.end()},function(e){var n={};n.code=-1,n.msg="保存失败",t.send(n),t.send()})}),i.get("/getapi",function(e,t){t.send("sdasfasda,hhahha,新的来了,sdasdasfa,asdas")}),i.all("/gitpull",function(e,t){t.send("我不想备案,asdasda,asda1231231"),s.exec("git pull",function(e,t){return e?void console.log(e):void s.exec("pm2 restart dist/server/app.js",function(e,t){e&&console.log(e,"err")})})}),i.post("/upimage",function(e,t,n){var o=new r.Form;o.parse(e,function(e,n,o){e&&console.log("parse error: "+e);var i=o.upload[0].path,s=o.upload[0].originalFilename;c(s,i,function(e){var n=e.url.replace("http","https");t.send(n),t.end()})})}),i.listen(6600,function(e,t){console.log("localhost:6000")})}).call(t,"lib")},function(e,t){e.exports=require("co")},function(e,t,n){"use strict";function o(e,t,n){var o;return i(regeneratorRuntime.mark(function i(){var s;return regeneratorRuntime.wrap(function(i){for(;;)switch(i.prev=i.next){case 0:return r.useBucket("huchsite"),i.next=3,r.put(e,t);case 3:s=i.sent,o=s,n(o);case 6:case"end":return i.stop()}},i,this)})).then(function(e){console.log(e,"gogogooogogogooggo")}).catch(function(e){console.log(e)}),console.log(o),o}var i=n(1),s=n(4),r=new s({region:"oss-cn-shanghai",accessKeyId:"LTAIQOSGGZcTplJQ",accessKeySecret:"wbqjEwf76dQ4XBSD0vPvcXLrct0Xkk"});e.exports=o},function(e,t,n){"use strict";var o,i=n(11),s=i.createConnection({host:"localhost",user:"root",password:"hc000000",database:"huchsite"});e.exports=function(e,t,n,r){o||(o=i.createPool({connectionLimit:10,host:"localhost",user:"root",password:"hc000000",database:"huchsite"}));var a="";if("add"==t){a="INSERT INTO `home` SET ?";var c={};c.title=e.title,c.tag=e.tag,c.data=e.text,c.creat_time=+e.time,c.desc=e.desc,c.imgpath=e.imgpath,o.getConnection(function(e,t){t.query(a,c,function(e,o){e&&r(e),n(o),t.release()})})}if("find"==t){var u=e.id;a=0==u?"SELECT * FROM `home`":"SELECT * FROM `home` WHERE id = "+s.escape(u),o.getConnection(function(e,t){t.query(a,function(e,o){e&&n(o),n(o),t.release()})})}}},function(e,t){e.exports=require("ali-oss")},function(e,t){e.exports=require("body-parser")},function(e,t){e.exports=require("child_process")},function(e,t){e.exports=require("compression")},function(e,t){e.exports=require("express")},function(e,t){e.exports=require("formidable")},function(e,t){e.exports=require("multiparty")},function(e,t){e.exports=require("mysql")},function(e,t){e.exports=require("path")}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
+
+	__webpack_require__(1);
+
+	var express = __webpack_require__(2);
+	var app = express();
+
+	var callfile = __webpack_require__(3);
+
+	var multiparty = __webpack_require__(4);
+	var formidable = __webpack_require__(5);
+	var compression = __webpack_require__(6);
+
+	var aliUpimg = __webpack_require__(7);
+
+	var co = __webpack_require__(8);
+	var path = __webpack_require__(10);
+	var connetsql = __webpack_require__(11);
+
+	var bodyParser = __webpack_require__(13);
+	app.use(bodyParser.urlencoded({ extended: false }));
+
+	app.set("view engine", "ejs");
+	app.set('views', './public');
+
+	app.use(compression()); //gzip
+
+
+	app.use('/dist', express.static('./dist/src'));
+	app.use('/common', express.static('./common'));
+	app.use('/common', express.static('common'));
+
+	app.use('/client', express.static('./dist/client'));
+
+	app.use('/', express.static('./dist/client'));
+
+	app.get('/', function (req, res) {
+		res.sendFile(path.resolve(__dirname, '../public/index.html'));
+	});
+
+	app.get('/add', function (req, res) {
+		res.sendFile(path.resolve(__dirname, '../public/index.html'));
+	});
+
+	app.get('/detail/*', function (req, res) {
+		res.sendFile(path.resolve(__dirname, '../public/index.html'));
+	});
+
+	function gettime(time) {
+		var timedetail = new Date(+time);
+		var timeresult = timedetail.getFullYear() + '.' + (timedetail.getMonth() + 1) + '.' + timedetail.getDate() + '.  ' + (timedetail.getHours() + 1) + ':' + (timedetail.getMinutes() + 1);
+		return timeresult;
+	}
+
+	app.get('/api/getlist', function (req, res) {
+		var obj = {};
+		obj.id = 0;
+		connetsql(obj, 'find', function (sqres) {
+			var resresult = {};
+			if (sqres.length) {
+				resresult.code = 0;
+				var clentarr = [];
+				sqres.map(function (ele, i) {
+					var obj = {};
+					obj.tags = ele.tag.split(',');
+					obj.title = ele.title;
+					obj.desc = ele.desc;
+					obj.id = ele.id;
+					obj.creat_time = gettime(ele.creat_time);
+					clentarr.push(obj);
+				});
+				resresult.data = clentarr.reverse();
+			} else {
+				resresult.code = -1;
+				resresult.msg = "无此结果";
+				resresult.data = sqres;
+			}
+			res.send(resresult);
+			res.end();
+		});
+	});
+
+	app.get('/api/getDetail', function (req, res) {
+		connetsql(req.query, 'find', function (sqres) {
+			var resresult = {};
+			if (sqres.length) {
+				resresult.code = 0;
+				resresult.data = sqres[0];
+				resresult.data.tags = resresult.data.tag.split(',');
+				resresult.data.creat_time = gettime(resresult.data.creat_time);
+			} else {
+				resresult.code = -1;
+				resresult.msg = "无此结果";
+				resresult.data = sqres[0];
+			}
+			res.send(resresult);
+			res.end();
+		});
+	});
+
+	app.post('/api/add', function (req, res) {
+		connetsql(req.body, 'add', function (sqres) {
+			var obj = {};
+			obj.code = 0;
+			res.send(obj);
+			res.end();
+		}, function (file) {
+			var obj = {};
+			obj.code = -1;
+			obj.msg = "保存失败";
+			res.send(obj);
+			res.send();
+		});
+	});
+
+	app.get('/getapi', function (req, res) {
+		res.send('sdasfasda,hhahha,新的来了,sdasdasfa,asdas');
+	});
+
+	app.all('/gitpull', function (req, res) {
+		res.send('我不想备案,asdasda,asda1231231');
+		callfile.exec('git pull', function (err, data) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			callfile.exec('pm2 restart dist/server/app.js', function (err, data) {
+				if (err) {
+					console.log(err, 'err');
+				}
+			});
+		});
+	});
+
+	app.post('/upimage', function (req, res, next) {
+
+		var form = new multiparty.Form();
+
+		form.parse(req, function (err, fields, files) {
+			if (err) {
+				console.log('parse error: ' + err);
+			}
+			var imgpath = files.upload[0].path;
+			var name = files.upload[0].originalFilename;
+			var data;
+			var result = aliUpimg(name, imgpath, function (imgres) {
+				var url = imgres.url.replace('http', 'https');
+				res.send(url);
+				res.end();
+			});
+		});
+	});
+
+	app.listen(6600, function (req, res) {
+
+		console.log("localhost:6000");
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, "lib"))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	module.exports = require("babel-polyfill");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	module.exports = require("express");
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+	module.exports = require("child_process");
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	module.exports = require("multiparty");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	module.exports = require("formidable");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	module.exports = require("compression");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var co = __webpack_require__(8);
+	var OSS = __webpack_require__(9);
+
+	var client = new OSS({
+		region: 'oss-cn-shanghai',
+		accessKeyId: 'LTAIQOSGGZcTplJQ',
+		accessKeySecret: 'wbqjEwf76dQ4XBSD0vPvcXLrct0Xkk'
+	});
+
+	function aliup(name, path, callback) {
+		var aliresult;
+		co(regeneratorRuntime.mark(function _callee() {
+			var result;
+			return regeneratorRuntime.wrap(function _callee$(_context) {
+				while (1) {
+					switch (_context.prev = _context.next) {
+						case 0:
+							client.useBucket('huchsite');
+							_context.next = 3;
+							return client.put(name, path);
+
+						case 3:
+							result = _context.sent;
+
+							aliresult = result;
+							callback(aliresult);
+
+						case 6:
+						case 'end':
+							return _context.stop();
+					}
+				}
+			}, _callee, this);
+		})).then(function (resurt) {
+			console.log(resurt, "gogogooogogogooggo");
+		}).catch(function (err) {
+			console.log(err);
+		});
+		console.log(aliresult);
+		return aliresult;
+	}
+
+	module.exports = aliup;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+	module.exports = require("co");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+	module.exports = require("ali-oss");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+	module.exports = require("path");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var mysql = __webpack_require__(12);
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: 'hc000000',
+		database: 'huchsite'
+	});
+
+	// connection.connect(function(err) {
+	//   if (err) {
+	//     console.error('error connecting: ' + err.stack);
+	//     return;
+	//   }
+
+	//   console.log('connected as id ' + connection.threadId);
+	// });
+
+	// connection.query('select * from `xinjian`', function (error, results, fields) {
+	//   if (error) throw error;
+	//   console.log('The solution is: ', results[0].name);
+	// });
+
+	// connection.end();
+	// connection.connect();
+	// 	var sqlState = 'SELECT * FROM `home` WHERE id = ' + connection.escape(2);
+	// 	connection.query(sqlState, function (error, results, fields) {
+	//   if (error) throw error;
+	//   // console.log('The solution is: ', results);
+	//   // callback(results)
+	//   console.log(results)
+
+	// });
+
+	var pool;
+
+	module.exports = function (obj, type, callback, file) {
+		if (!pool) {
+			pool = mysql.createPool({
+				connectionLimit: 10,
+				host: 'localhost',
+				user: 'root',
+				password: 'hc000000',
+				database: 'huchsite'
+			});
+		} else {}
+
+		var sqlState = "";
+
+		if (type == "add") {
+			sqlState = 'INSERT INTO `home` SET ?';
+			var post = {};
+			post.title = obj.title;
+			post.tag = obj.tag;
+			post.data = obj.text;
+			post.creat_time = +obj.time;
+			post.desc = obj.desc;
+			post.imgpath = obj.imgpath;
+			pool.getConnection(function (err, connection) {
+				connection.query(sqlState, post, function (err, rows) {
+					if (err) {
+						file(err);
+					}
+					callback(rows);
+					connection.release();
+					// Don't use the connection here, it has been returned to the pool.
+				});
+			});
+		}
+		if (type == "del") {}
+		if (type == "upset") {}
+		if (type == "find") {
+			var id = obj.id;
+
+			if (id == 0) {
+				sqlState = 'SELECT * FROM `home`';
+			} else {
+				sqlState = 'SELECT * FROM `home` WHERE id = ' + connection.escape(id);
+			}
+			pool.getConnection(function (err, connection) {
+				connection.query(sqlState, function (err, rows) {
+					if (err) {
+						callback(rows);
+					}
+					callback(rows);
+					connection.release();
+					// Don't use the connection here, it has been returned to the pool.
+				});
+			});
+		}
+	};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+	module.exports = require("mysql");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+	module.exports = require("body-parser");
+
+/***/ })
+/******/ ]);

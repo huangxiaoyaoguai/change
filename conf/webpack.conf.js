@@ -124,12 +124,12 @@ serverConfig = {
     externals: getExternals(),
     resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {warnings: false},
-            comments: false
-        }),
+        // new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.optimize.DedupePlugin(),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {warnings: false},
+        //     comments: false
+        // }),
         //  new HtmlWebpackPlugin({
         //     filename: './public/index.html',
         //     template: './tpl/index.html',
