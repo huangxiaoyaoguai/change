@@ -86,10 +86,10 @@ clientConfig = {
 
 serverConfig = {
     context: path.resolve(__dirname, '..'),
-    entry: {server: './server/server.prod'},
+    entry: {server: './lib/app'},
     output: {
         path: path.resolve(__dirname, '../dist/server'),
-        filename: '[name].js',
+        filename: 'app.js',
         chunkFilename: 'chunk.[name].js'
     },
     target: 'node',
@@ -125,18 +125,18 @@ serverConfig = {
     resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.optimize.DedupePlugin(),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {warnings: false},
-        //     comments: false
-        // }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {warnings: false},
+            comments: false
+        }),
         //  new HtmlWebpackPlugin({
         //     filename: './public/index.html',
         //     template: './tpl/index.html',
         //     chunksSortMode: 'none'
         // }),
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
+        // new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
     ]
 }
 
-module.exports = [clientConfig]
+module.exports = [clientConfig,serverConfig]
