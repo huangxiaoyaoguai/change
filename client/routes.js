@@ -7,7 +7,7 @@ if (typeof require.ensure !== 'function') {
 const routes = {
     childRoutes: [{
         path: '/',
-        component: require('./common/main'),
+        // component: require('./common/main'),
         indexRoute: {
             getComponent(nextState, callback) {
                 require.ensure([], require => {
