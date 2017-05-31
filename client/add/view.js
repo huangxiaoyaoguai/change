@@ -70,6 +70,7 @@ class HomeView extends Component {
             return
         }
         var formData = new FormData();
+        console.log(files[0])
         formData.append('upload', files[0]);
          var xhr = new XMLHttpRequest();
         xhr.open('POST', '/upimage');

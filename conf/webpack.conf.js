@@ -108,10 +108,10 @@ serverConfig = {
                 cacheDirectory: true
             }
         }, {
-            test: /\.scss$/,
+            test: /\.less$/,
             loaders: [
                 'css/locals?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]',
-                'sass'
+                'less'
             ]
         }, {
             test: /\.(jpg|png|gif|webp)$/,
@@ -124,12 +124,12 @@ serverConfig = {
     externals: getExternals(),
     resolve: {extensions: ['', '.js', '.json', '.less']},
     plugins: [
-        // new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.optimize.DedupePlugin(),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {warnings: false},
-        //     comments: false
-        // }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {warnings: false},
+            comments: false
+        })
         //  new HtmlWebpackPlugin({
         //     filename: './public/index.html',
         //     template: './tpl/index.html',
