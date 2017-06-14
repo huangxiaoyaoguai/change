@@ -7,6 +7,11 @@ const path = require('path'),
 let clientConfig, serverConfig
 
 
+let HappyPack = require('happypack');
+let os = require('os');
+let happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
+
 console.log( process.env.NODE_ENV)
 
 function getExternals() {
@@ -47,7 +52,7 @@ clientConfig = {
             }
         }, {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style', 'css!less')
+            loader: ExtractTextPlugin.extract('style', path.resolve(__dirname, '../node_modules', 'happypack/loader') + '?id=less')
         }, {
             test: /\.(jpg|png|gif|webp)$/,
             loader: 'url?limit=8000'
@@ -67,6 +72,14 @@ clientConfig = {
             names: ['vendor', 'manifest'],
             filename: '[name].js'
         }),
+
+        new HappyPack({
+            id: 'less',
+                      threadPool: happyThreadPool,
+                      cache: true,
+                      verbose: true,
+                      loaders: ['css!less'],
+            }),
         // new webpack.optimize.UglifyJsPlugin({
         //     compress: {warnings: false},
         //     comments: false

@@ -58,7 +58,7 @@ class HomeView extends Component {
 
 
                     </div>
-                    {this.state.list.length?<div className="aboutinfo fl">
+                    {!!this.state.list.length && <div className="aboutinfo fl">
                         <div className="aboutinfo_tag">
                             <div className="tag_title">TAGS</div>
                             <div className="tag_content">
@@ -91,7 +91,7 @@ class HomeView extends Component {
                                 <div className="text">微信扫一扫，打开小程序</div>
                             </div>
                         </div>
-                    </div>:null}
+                    </div>}
                 </div>
 			</div>
 
