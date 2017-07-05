@@ -34,7 +34,7 @@ class HomeView extends Component {
     render() {
         var data = this.state.data;
         return (
-            <div className="detail">
+            <div className="detail animated fadeInRight">
                 <div className="detail_pic" style={{"backgroundImage":"url("+data.imgpath+")"}}></div>
 
                 <div className="detail_content">
