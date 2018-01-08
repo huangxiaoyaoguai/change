@@ -402,7 +402,8 @@ var Zepto = (function() {
       // 第二，一段查询字符串，旨在通过zepto查找dom对象
       // 将查询结果存储到 dom 变量中
 
-      selector = selector.trim()
+      selector = selector.trim()    //去掉字符串的左右空格
+
       // If it's a html fragment, create nodes from it
       // Note: In both Chrome 21 and Firefox 15, DOM error 12
       // is thrown if the fragment doesn't begin with <

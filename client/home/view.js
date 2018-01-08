@@ -14,6 +14,15 @@ class HomeView extends Component {
     }
 	componentDidMount(){
         this.getData();
+        //   var timing = window.performance.timing;
+        // var DNStime = timing.domainLookupEnd - timing.domainLookupStart;
+
+        // var tcpTime = timing.connectEnd - timing.connectStart;
+
+        // var restime = timing.responseEnd - timing.responseStart;
+
+        // var domtime = timing.domComplete - timing.domInteractive;
+        // console.log(timing,DNStime,tcpTime,restime,domtime)
 	}
     getData(){
         var that = this;
@@ -63,7 +72,7 @@ class HomeView extends Component {
                             <div className="tag_title">TAGS</div>
                             <div className="tag_content">
                                 <span className="hvr-grow">知乎</span>
-                                <span className="hvr-grow">前段开发</span>
+                                <span className="hvr-grow">前端开发</span>
                                 <span className="hvr-grow">开始</span>
                                 <span className="hvr-grow">html</span>
                                 <span className="hvr-grow">知道</span>

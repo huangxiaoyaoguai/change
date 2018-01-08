@@ -60,9 +60,36 @@
         <script>
    console.log("%c                       .::::.\n                   .::::::::.\n                 ::::::::::: \n             ..:::::::::::         来呀，来呀，\n           '::::::::::::'\n             .::::::::::\n         ::::::::::::::..\n             ..::::::::::::.\n           ``::::::::::::::::\n            ::::``:::::::::         .:::.\n           ::::'   ':::::        .::::::::.\n         .::::'      ::::     .:::::::'::::.\n        .:::'       :::::  .:::::::::'  :::::.\n       .::'        :::::.:::::::::'       :::::.\n      .::'         ::::::::::::::'         ``::::.\n  ...:::           ::::::::::::               ``::.\n ```` ':.          ':::::::::                   ::::..\n                    '.:::::'                    ':'````..",'color: #e32ee4;width:100%')
 
+    </script>
+    <script>
+        var timing = window.performance.timing;
+        console.log(timing)
+        // dns解析时间
+        var DNStime = timing.domainLookupEnd - timing.domainLookupStart;
+        console.log(DNStime)
+// tcp的链接时间
+        var tcpTime = timing.connectEnd - timing.connectStart;
+        console.log(tcpTime)
+// request请求时间
+        var restime = timing.responseEnd - timing.responseStart;
+        console.log(restime)
+    // dom渲染时间
+        var domtime = timing.domComplete - timing.domInteractive;
+        console.log(domtime)
 
+// 网页白屏时间
+        var baipingtime = timing.responseStart - timing.navigationStart;
+        console.log(baipingtime)
 
+        // domready时间(用户可操作时间节点) ：
+        var domready = timing.domContentLoadedEventEnd - timing.navigationStart;
+        console.log(domready)
 
+        // onload时间(总下载时间) ：
+        var onloadtime = timing.loadEventEnd - timing.navigationStart;
+        console.log(onloadtime)
         
+
+
     </script>
 </html>
